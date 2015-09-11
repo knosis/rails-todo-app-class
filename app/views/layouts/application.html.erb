@@ -7,8 +7,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <ul class= "todos">
 
-<%= yield %>
+<script id="template" type="text/x-handelbars-template">
+    <li>{{#each this}}
+    <li>{{description}}</li>
+</script>
 
+</ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.2/handlebars.amd.js"></script>
+
+(function() {
+  var data = {
+    description: "This works right?"
+};
+
+  var template = Handlebars.compile( $('#template').html() );
+  console.log(template);
+
+  var temp = template(data);
+  console.log(temp);
+
+  $('ul.todos').append(template(data));
+
+})()
 </body>
 </html>
